@@ -15,6 +15,21 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
+.calculator__history {
+    background-color: #444;
+    color: #bbb;
+    font-size: 20px;
+    text-align: right;
+    padding: 10px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 1px solid #555;
+    height: 40px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+
 .calculator__display {
     background-color: #222;
     color: white;

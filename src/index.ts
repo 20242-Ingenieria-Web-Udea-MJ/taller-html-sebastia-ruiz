@@ -1,16 +1,21 @@
 const display = document.getElementById("display") as HTMLElement | null;
+const operationHistory = document.getElementById("history") as HTMLElement | null;
 
-if (!display) {
-    throw new Error("Display element not found");
+if (!display || !operationHistory) {
+    throw new Error("Display or history element not found");
 }
 
-let displayValue = "0"; 
-let expression: (string | number)[] = [];
-let currentOperator = ""; 
-let resultCalculated = false;
+let displayValue = "0";
+let expression: (string | number)[] = []; // To store the sequence of numbers and operators
+let currentOperator = "";
+let resultCalculated = false; // Flag to check if the result was just calculated
 
 function updateDisplay(value: string) {
     display!.textContent = value;
+}
+
+function updateHistory() {
+    operationHistory!.textContent = expression.join(" ");
 }
 
 function clearAll() {
@@ -19,18 +24,15 @@ function clearAll() {
     currentOperator = "";
     resultCalculated = false;
     updateDisplay(displayValue);
+    operationHistory!.textContent = "";
 }
 
-
 function handleNumber(number: string) {
-    if (displayValue === "Error") {
-        return;
-    }
-
     if (resultCalculated) {
         // If a result was just calculated, start a new expression
         displayValue = number;
         resultCalculated = false;
+        expression = [];
     } else if (displayValue === "0" || currentOperator) {
         displayValue = number;
     } else {
@@ -38,13 +40,10 @@ function handleNumber(number: string) {
     }
     currentOperator = "";
     updateDisplay(displayValue);
+    updateHistory(); // Update history with the new number
 }
 
 function handleOperator(operator: string) {
-    if (displayValue === "Error") {
-        return;
-    }
-
     if (currentOperator) {
         expression.pop(); // Replace the previous operator
     } else {
@@ -58,12 +57,11 @@ function handleOperator(operator: string) {
 
     expression.push(operator);
     currentOperator = operator;
+    updateHistory(); // Update history after operator is added
 }
 
-
-
 function calculate() {
-    if (displayValue === "Error" || currentOperator) return;
+    if (currentOperator) return;
     expression.push(parseFloat(displayValue)); // Push the last number to the expression
 
     let result = evaluateExpression(expression);
@@ -78,8 +76,8 @@ function calculate() {
 
     resultCalculated = true;
     updateDisplay(displayValue);
+    updateHistory(); // Update history after calculation
 }
-
 
 function evaluateExpression(exp: (string | number)[]): number | string {
     let result = exp[0] as number;
