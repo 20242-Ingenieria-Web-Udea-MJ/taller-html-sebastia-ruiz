@@ -1,18 +1,15 @@
-const display = document.getElementById("display") as HTMLElement | null;
-
+"use strict";
+const display = document.getElementById("display");
 if (!display) {
     throw new Error("Display element not found");
 }
-
-let displayValue = "0"; 
-let expression: (string | number)[] = [];
-let currentOperator = ""; 
+let displayValue = "0";
+let expression = [];
+let currentOperator = "";
 let resultCalculated = false;
-
-function updateDisplay(value: string) {
-    display!.textContent = value;
+function updateDisplay(value) {
+    display.textContent = value;
 }
-
 function clearAll() {
     displayValue = "0";
     expression = [];
@@ -20,74 +17,62 @@ function clearAll() {
     resultCalculated = false;
     updateDisplay(displayValue);
 }
-
-
-function handleNumber(number: string) {
+function handleNumber(number) {
     if (displayValue === "Error") {
         return;
     }
-
     if (resultCalculated) {
         // If a result was just calculated, start a new expression
         displayValue = number;
         resultCalculated = false;
-    } else if (displayValue === "0" || currentOperator) {
+    }
+    else if (displayValue === "0" || currentOperator) {
         displayValue = number;
-    } else {
+    }
+    else {
         displayValue += number;
     }
     currentOperator = "";
     updateDisplay(displayValue);
 }
-
-function handleOperator(operator: string) {
+function handleOperator(operator) {
     if (displayValue === "Error") {
         return;
     }
-
     if (currentOperator) {
         expression.pop(); // Replace the previous operator
-    } else {
+    }
+    else {
         expression.push(parseFloat(displayValue)); // Push the last number to the expression
     }
-
     if (resultCalculated) {
         expression = [parseFloat(displayValue)];
         resultCalculated = false;
     }
-
     expression.push(operator);
     currentOperator = operator;
 }
-
-
-
 function calculate() {
-    if (displayValue === "Error" || currentOperator) return;
+    if (displayValue === "Error" || currentOperator)
+        return;
     expression.push(parseFloat(displayValue)); // Push the last number to the expression
-
     let result = evaluateExpression(expression);
-
     if (result === "Error") {
         displayValue = "Error";
         expression = [];
-    } else {
-        displayValue = result.toString();
-        expression = [result as number]; // Reset the expression to the result
     }
-
+    else {
+        displayValue = result.toString();
+        expression = [result]; // Reset the expression to the result
+    }
     resultCalculated = true;
     updateDisplay(displayValue);
 }
-
-
-function evaluateExpression(exp: (string | number)[]): number | string {
-    let result = exp[0] as number;
-
+function evaluateExpression(exp) {
+    let result = exp[0];
     for (let i = 1; i < exp.length; i += 2) {
         const operator = exp[i];
-        const nextNumber = exp[i + 1] as number;
-
+        const nextNumber = exp[i + 1];
         switch (operator) {
             case "+":
                 result += nextNumber;
@@ -108,29 +93,26 @@ function evaluateExpression(exp: (string | number)[]): number | string {
                 return result;
         }
     }
-
     return result;
 }
-
-
-function handleButtonClick(event: Event) {
-    const target = event.target as HTMLButtonElement;
+function handleButtonClick(event) {
+    const target = event.target;
     const action = target.dataset.action;
     const buttonText = target.textContent;
-
     if (!action) {
-        handleNumber(buttonText!);
-    } else if (action === "clear") {
+        handleNumber(buttonText);
+    }
+    else if (action === "clear") {
         clearAll();
-    } else if (action === "equals") {
+    }
+    else if (action === "equals") {
         calculate();
-    } else {
-        handleOperator(buttonText!);
+    }
+    else {
+        handleOperator(buttonText);
     }
 }
-
 document.querySelectorAll(".calculator__button").forEach(button => {
     button.addEventListener("click", handleButtonClick);
 });
-
 clearAll(); // Initialize the display
