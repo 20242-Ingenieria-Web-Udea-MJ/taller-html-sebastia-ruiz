@@ -1,14 +1,18 @@
 "use strict";
 const display = document.getElementById("display");
-if (!display) {
-    throw new Error("Display element not found");
+const operationHistory = document.getElementById("history");
+if (!display || !operationHistory) {
+    throw new Error("Display or history element not found");
 }
 let displayValue = "0";
-let expression = [];
+let expression = []; // To store the sequence of numbers and operators
 let currentOperator = "";
-let resultCalculated = false;
+let resultCalculated = false; // Flag to check if the result was just calculated
 function updateDisplay(value) {
     display.textContent = value;
+}
+function updateHistory() {
+    operationHistory.textContent = expression.join(" ");
 }
 function clearAll() {
     displayValue = "0";
@@ -16,15 +20,14 @@ function clearAll() {
     currentOperator = "";
     resultCalculated = false;
     updateDisplay(displayValue);
+    operationHistory.textContent = "";
 }
 function handleNumber(number) {
-    if (displayValue === "Error") {
-        return;
-    }
     if (resultCalculated) {
         // If a result was just calculated, start a new expression
         displayValue = number;
         resultCalculated = false;
+        expression = [];
     }
     else if (displayValue === "0" || currentOperator) {
         displayValue = number;
@@ -34,11 +37,9 @@ function handleNumber(number) {
     }
     currentOperator = "";
     updateDisplay(displayValue);
+    updateHistory(); // Update history with the new number
 }
 function handleOperator(operator) {
-    if (displayValue === "Error") {
-        return;
-    }
     if (currentOperator) {
         expression.pop(); // Replace the previous operator
     }
@@ -51,9 +52,10 @@ function handleOperator(operator) {
     }
     expression.push(operator);
     currentOperator = operator;
+    updateHistory(); // Update history after operator is added
 }
 function calculate() {
-    if (displayValue === "Error" || currentOperator)
+    if (currentOperator)
         return;
     expression.push(parseFloat(displayValue)); // Push the last number to the expression
     let result = evaluateExpression(expression);
@@ -67,6 +69,7 @@ function calculate() {
     }
     resultCalculated = true;
     updateDisplay(displayValue);
+    updateHistory(); // Update history after calculation
 }
 function evaluateExpression(exp) {
     let result = exp[0];
