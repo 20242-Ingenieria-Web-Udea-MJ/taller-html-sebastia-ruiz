@@ -36,8 +36,6 @@ body {
     font-size: 48px;
     text-align: right;
     padding: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
 }
 
 .calculator__buttons {
