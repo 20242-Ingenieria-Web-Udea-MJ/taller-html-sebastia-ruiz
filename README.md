@@ -23,7 +23,7 @@ This project is a web-based calculator that mimics the design and functionality 
 
 ## Demo
 
-You can check out the live demo of the calculator [here](#).
+You can check out the live demo of the calculator [here](https://20242-ingenieria-web-udea-mj.github.io/taller-html-sebastian-ruiz/).
 
 ## Installation
 
@@ -83,16 +83,6 @@ apple-calculator-clone/
 - **HTML**: For structuring the content.
 - **CSS**: For styling the application.
 - **Node.js & npm**: For package management and development tooling.
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to the project, please fork the repository and use a feature branch. Pull requests are encouraged.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a pull request
 
 
 License
