@@ -42,7 +42,7 @@ Using node and npm
 ```bash
 npm install
 ```
-3 . **Build the project::**
+3. **Build the project:**
 Compile the TypeScript files:
 
 ```bash
@@ -85,5 +85,5 @@ taller-html-sebastian-ruiz/
 - **Node.js & npm**: For package management and development tooling.
 
 
-License
+##License
 This project is licensed under the MIT License - see the LICENSE file for details.
