@@ -31,29 +31,29 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/your-username/apple-calculator-clone.git
-   cd apple-calculator-clone
-   ```
+```bash
+git clone https://github.com/your-username/apple-calculator-clone.git
+cd apple-calculator-clone
+```
 
 2. **Install dependencies:**
-using node and npm
+Using node and npm
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 3 . **Build the project::**
 Compile the TypeScript files:
 
-   ```bash
-   npx tsc
-   ```
+```bash
+npx tsc
+```
 4. **Run the project:**
 You can open the index.html file in your web browser directly, or use a simple server:
 
-   ```bash
-    npx http-server .
-   ```
+```bash
+ npx http-server .
+```
 
 ## Usage
 
@@ -64,15 +64,15 @@ You can open the index.html file in your web browser directly, or use a simple s
 ## Project Structure
 
 ```plaintext
-apple-calculator-clone/
+taller-html-sebastian-ruiz/
 ├── src/
-│   ├── components/      # (Optional) Component-based structure
-│   ├── styles/          # Stylesheets (CSS files)
-│   ├── index.html       # Main HTML file
 │   ├── index.ts         # Main TypeScript file
-│   └── utils/           # Utility functions
-├── dist/                # Compiled JavaScript files
+├── dist/                # Compiled files
+│   ├── index.html       # Main HTML file
+│   ├── styles.css       # Main CSS file
+│   ├── index.js         # Main compiled JS file
 ├── tsconfig.json        # TypeScript configuration
+├── .gitignore           # git ignore configuration file
 ├── package.json         # Node.js dependencies and scripts
 └── README.md            # Project documentation
 ```
