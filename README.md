@@ -83,7 +83,3 @@ taller-html-sebastian-ruiz/
 - **HTML**: For structuring the content.
 - **CSS**: For styling the application.
 - **Node.js & npm**: For package management and development tooling.
-
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
