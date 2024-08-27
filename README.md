@@ -1,6 +1,6 @@
 # Apple-Style Calculator Clone
 
-This project is a web-based calculator that mimics the design and functionality of the Apple calculator. Built using TypeScript, HTML, and CSS, this calculator supports basic operations (addition, subtraction, multiplication, and division) and allows for chained calculations. It also handles division by zero gracefully by displaying an error message.
+This project is a web-based calculator that mimics the design and functionality of the Apple calculator. Built using TypeScript, HTML, and CSS, this calculator supports basic operations (addition, subtraction, multiplication, and division) and allows for chained calculations with a built-in calculations history. It also handles division by zero gracefully by displaying an error message.
 
 ## Table of Contents
 
